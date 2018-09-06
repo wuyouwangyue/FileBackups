@@ -51,7 +51,7 @@ namespace FileBackups
             if (item == null)
                 return;
 
-            CopyFiles(item.SaveDir, item.Path);
+            CopyFiles(item.SaveDir, this.SourcePath);
 
         }
 
