@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,13 @@ namespace FileBackups
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var _main = this.DataContext;
+            var content = JsonConvert.SerializeObject(_main);
+            File.WriteAllText("main.data", content);
         }
     }
 }

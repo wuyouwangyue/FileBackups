@@ -4,9 +4,95 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileBackups"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        mc:Ignorable="d" Background="WhiteSmoke"
+        Closing="Window_Closing"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        Title="文件保存" Height="450" Width="600">
+    <Grid Margin="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="源文件目录：" VerticalAlignment="Center" Width="80"/>
+                <TextBox Grid.Column="1" VerticalContentAlignment="Center"
+                         Text="{Binding SourcePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" Content="打开" Width="80" Margin="5,0"
+                        Command="{Binding OpenSourcePathCommand}"/>
+
+            </Grid>
+
+
+            <Grid Height="25" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="存储标签：" VerticalAlignment="Center" Width="80"/>
+                <TextBox Grid.Column="1" VerticalContentAlignment="Center"
+                         Text="{Binding SaveDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" Content="存储" Width="80" Margin="5,0"
+                        Command="{Binding SaveCommand}"/>
+
+            </Grid>
+
+        </StackPanel>
+
+
+        <ListBox Grid.Row="1" Margin="0,15,5,0" ItemsSource="{Binding ItemSource}">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Margin" Value="2,2"/>
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Grid VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding Time}"/>
+                                    <TextBlock Grid.Column="1" Margin="10,0"
+                                               Text="{Binding Path}"
+                                               Width="100"
+                                               ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}"
+                                               TextTrimming="CharacterEllipsis"/>
+
+                                    <TextBlock Grid.Column="2"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{Binding Description}"/>
+
+                                    <StackPanel Orientation="Horizontal" Grid.Column="3">
+                                        <Button Content="还原" Width="60"
+                                                Command="{Binding Source={StaticResource Locator}, Path=Main.UnDoCommand}"
+                                                CommandParameter="{Binding Self}"/>
+                                        <Button Content="删除" Width="60" Margin="5,0,0,0"
+                                                Command="{Binding Source={StaticResource Locator}, Path=Main.DeleteCommand}"
+                                                CommandParameter="{Binding Self}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+
     </Grid>
 </Window>
