@@ -63,3 +63,4 @@ C:\Users\Administrator\Source\Repos\FileBackups\FileBackups\obj\Debug\FileBackup
 C:\Users\Administrator\Source\Repos\FileBackups\FileBackups\obj\Debug\FileBackups.csproj.CopyComplete
 C:\Users\Administrator\Source\Repos\FileBackups\FileBackups\obj\Debug\FileBackups.exe
 C:\Users\Administrator\Source\Repos\FileBackups\FileBackups\obj\Debug\FileBackups.pdb
+C:\Users\lonlife\Source\Repos\FileBackups\FileBackups\obj\Debug\FileBackups.csprojAssemblyReference.cache

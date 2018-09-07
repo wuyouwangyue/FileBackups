@@ -62,10 +62,10 @@ namespace FileBackups
             if (item == null)
                 return;
 
-            if(MessageBox.Show($"是否确认删除\r\n{item.Time}\r\n{item.Description}", "提示", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
-            {
-                return;
-            }
+            //if(MessageBox.Show($"是否确认删除\r\n{item.Time}\r\n{item.Description}", "提示", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+            //{
+            //    return;
+            //}
 
             DeleteFiles(item.SaveDir);
 
